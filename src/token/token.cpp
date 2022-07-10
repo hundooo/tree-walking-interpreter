@@ -1,9 +1,4 @@
 #include <string>
-#include "token.hpp"
+#include "Token.hpp"
 
-
-class token { 
-    public:
-        std::string type;
-        std::string literal;
-};
+Token::Token(std::string type, std::string literal) : type_(type), literal_(literal) {}
