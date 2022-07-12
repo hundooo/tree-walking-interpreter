@@ -15,7 +15,7 @@ void Lexer::read_char() {
 }
 
 void Lexer::eat_white_space() { 
-    while (ch_ == ' ' || ch == '\t' || ch == '\n' || ch == '\r') { 
+    while (ch_ == ' ' || ch_ == '\t' || ch_ == '\n' || ch_ == '\r') { 
         read_char();
     }
 }
@@ -53,17 +53,32 @@ std::string Lexer::read_number() {
 }
 
 Token Lexer::next_token() { 
-    Token tok;
-
+    Token tok = Token("", "");
     eat_white_space();
 
     switch(ch_) {
-        case '(':
-        case ')':
-        case '+':
-        case 0:
-        default:
-
+    case '(':
+        tok = Token(LPAREN, std::string(1, ch_));
+        break;
+    case ')':
+        tok = Token(RPAREN, std::string(1, ch_));
+        break;
+    case '+':
+        tok = Token(RPAREN, std::string(1, ch_));
+        break;
+    case 0:
+        tok = Token(eof, "");
+        break;
+    default:
+        if (is_letter(ch_)) {
+            std::string literal = read_identifier();
+            std::string type = lookup_ident(literal);
+            tok = Token(type, literal);
+        } else if (is_digit(ch_)) { 
+            tok = Token(INT, read_number());
+        } else {
+            tok = Token(ILLEGAL, std::string(1, ch_));
+        }
     }
 
     read_char();

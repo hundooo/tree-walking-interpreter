@@ -16,6 +16,6 @@ class Lexer {
         std::string read_identifier();
         std::string read_number();
         Token next_token();
-}
+};
 
 #endif  // LEXER_H
