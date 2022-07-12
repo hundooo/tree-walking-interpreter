@@ -14,7 +14,7 @@ const std::map<std::string, std::string> KEYWORDS = {{"define", DEFINE}};
 
 Token::Token(std::string type, std::string literal) : type_(type), literal_(literal) {}
 
-std::string Token::lookup_ident(std::string ident) { 
+std::string lookup_ident(std::string ident) { 
     if (KEYWORDS.find(ident) != KEYWORDS.end()) { 
         return KEYWORDS.find(ident)->second;
     }
