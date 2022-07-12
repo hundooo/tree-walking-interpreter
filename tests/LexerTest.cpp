@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
-#include "src/lexer/Lexer.hpp"
+#include <src/lexer/Lexer.hpp>
 #include "src/token/Token.hpp"
 
 int main() { 
