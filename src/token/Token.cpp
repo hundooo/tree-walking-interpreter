@@ -3,6 +3,7 @@
 #include "Token.hpp"
 
 const std::string eof = "EOF";
+const std::string ILLEGAL = "ILLEGAL";
 const std::string IDENT = "IDENT";
 const std::string INT = "INT";
 const std::string PLUS = "+";

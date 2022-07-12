@@ -2,6 +2,7 @@
 #define TOKEN_H
 
 extern const std::string eof;
+extern const std::string ILLEGAL;
 extern const std::string IDENT;
 extern const std::string INT;
 extern const std::string PLUS;
