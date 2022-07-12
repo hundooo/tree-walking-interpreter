@@ -12,6 +12,8 @@ const std::string RPAREN = ")";
 const std::string DEFINE = "define";
 const std::map<std::string, std::string> KEYWORDS = {{"define", DEFINE}};
 
+Token::Token() : type_(""), literal_("") {}
+
 Token::Token(std::string type, std::string literal) : type_(type), literal_(literal) {}
 
 std::string lookup_ident(std::string ident) { 

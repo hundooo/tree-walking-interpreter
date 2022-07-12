@@ -17,6 +17,7 @@ class Token {
     public:
         std::string type_;
         std::string literal_;
+        Token();
         Token(std::string type, std::string literal);
         std::string to_string();
 };
