@@ -1,8 +1,8 @@
 #include <string>
 #include "Lexer.hpp"
-#include "token/Token.hpp"
+#include "../token/Token.hpp"
 
-Lexer::Lexer(std::string input) : input_(input) {read_char();}
+Lexer::Lexer(std::string input) : input_(input), position_(0), read_position_(0), ch_(0) {read_char();}
 
 void Lexer::read_char() {
     if (read_position_ >= input_.length()) {
@@ -20,14 +20,6 @@ void Lexer::eat_white_space() {
     }
 }
 
-char Lexer::peek_char() { 
-    if (read_position_ >= input_.length()) { 
-        return 0;
-    } else { 
-        return input_.at(read_position_);
-    }
-}
-
 bool Lexer::is_letter(char ch) { 
     return 'a' <= ch && ch <= 'z' || 'A' <= ch && ch <= 'Z' || ch == '-';
 }
@@ -41,7 +33,7 @@ std::string Lexer::read_identifier() {
     while (is_letter(ch_)) { 
         read_char();
     }
-    return input_.substr(position, position_);
+    return input_.substr(position, position_ - position);
 }
 
 std::string Lexer::read_number() { 
@@ -49,7 +41,7 @@ std::string Lexer::read_number() {
     while (is_digit(ch_)) { 
         read_char();
     }
-    return input_.substr(position, position_);
+    return input_.substr(position, position_ - position);
 }
 
 Token Lexer::next_token() { 
@@ -64,7 +56,7 @@ Token Lexer::next_token() {
         tok = Token(RPAREN, std::string(1, ch_));
         break;
     case '+':
-        tok = Token(RPAREN, std::string(1, ch_));
+        tok = Token(PLUS, std::string(1, ch_));
         break;
     case 0:
         tok = Token(eof, "");
@@ -74,8 +66,10 @@ Token Lexer::next_token() {
             std::string literal = read_identifier();
             std::string type = lookup_ident(literal);
             tok = Token(type, literal);
+            return tok;
         } else if (is_digit(ch_)) { 
             tok = Token(INT, read_number());
+            return tok;
         } else {
             tok = Token(ILLEGAL, std::string(1, ch_));
         }

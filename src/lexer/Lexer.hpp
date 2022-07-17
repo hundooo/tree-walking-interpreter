@@ -1,6 +1,8 @@
 #ifndef LEXER_H
 #define LEXER_H
 
+#include "../token/Token.hpp"
+
 class Lexer { 
     public:
         std::string input_;
@@ -10,7 +12,6 @@ class Lexer {
         Lexer(std::string input);
         void read_char();
         void eat_white_space();
-        char peek_char();
         bool is_letter(char ch);
         bool is_digit(char ch);
         std::string read_identifier();
