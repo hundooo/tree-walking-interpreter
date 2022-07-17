@@ -1,6 +1,9 @@
 #ifndef TOKEN_H
 #define TOKEN_H
 
+#include <string>
+#include <map>
+
 extern const std::string eof;
 extern const std::string ILLEGAL;
 extern const std::string IDENT;
