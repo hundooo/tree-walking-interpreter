@@ -19,8 +19,8 @@ void printBT(const std::string& prefix, const Node* node, bool isLeft) {
             std::cout << node->oper_ << std::endl;
         }
 
-        printBT(prefix + (isLeft ? "│   " : "    "), node->m_left, true);
-        printBT(prefix + (isLeft ? "│   " : "    "), node->m_right, false);
+        printBT(prefix + (isLeft ? "│   " : "    "), node->left_, true);
+        printBT(prefix + (isLeft ? "│   " : "    "), node->right_, false);
     }
 }
 
