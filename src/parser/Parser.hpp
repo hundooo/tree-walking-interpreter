@@ -15,6 +15,7 @@ class Parser {
         void next_token();
         std::vector<Node *> parse();
         Node *parseExpression();
+        void node_destroy(Node *n);
 };
 
 #endif  // PARSER_H
