@@ -5,10 +5,13 @@
 
 class Node { 
     public:
-        Node *left;
-        Node *right;
-        int val;
-        std::string ident;
+        Node *left_;
+        Node *right_;
+        int val_;
+        std::string ident_;
+        std::string oper_;
+        Node(int val);
+        Node(std::string oper);
 };
 
 #endif  // AST_H
