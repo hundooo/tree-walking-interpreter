@@ -14,28 +14,12 @@ void Parser::next_token() {
 std::vector<Node *> Parser::parse() {
     std::vector<Node *> root;
     while (cur_token_.type_ != eof) {
+        if (cur_token_.type_ == RPAREN) {next_token(); continue;}
         root.push_back(parseExpression());
+        next_token();
     }
     return root;
 }
-
-// Node *Parser::parseExpression() { 
-//     next_token();
-//     static Node op = Node(cur_token_.literal_);
-    
-//     next_token();
-//     static Node left = Node(std::stoi(cur_token_.literal_));
-//     Node *lft_ptr = &left;
-//     op.left_ = lft_ptr;
-
-//     next_token();
-//     static Node right = Node(std::stoi(cur_token_.literal_));
-//     Node *rgt_ptr = &right;
-//     op.right_ = rgt_ptr;
-
-//     Node *op_ptr = &op;
-//     return op_ptr;
-// }
 
 Node *Parser::parseExpression() {
     next_token();
