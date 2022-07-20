@@ -12,6 +12,7 @@ class Node {
         std::string oper_;
         Node(int val);
         Node(std::string oper);
+        std::string to_string();
 };
 
 #endif  // AST_H
