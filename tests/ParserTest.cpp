@@ -27,11 +27,18 @@ void printBT(const Node* node) {
 }
 
 int main() { 
-    std::string input = "(+ (+ 6 3) (+ 1 4))";
+    std::string input = "(+ (+ 6 3) (+ 1 4)) (+ 3 4)";
     Lexer l = Lexer(input);
     Parser p = Parser(l);
+    std::vector<Node *> root = p.parse();
 
-    Node *node = p.parseExpression();
-    printBT(node);
-    p.node_destroy(node);
+   
+
+    for (int i = 0; i < root.size(); ++i) { 
+        printBT(root[i]);
+        printf("\n");
+    }
+    for (int i = 0; i < root.size(); ++i) { 
+        p.node_destroy(root[i]);
+    }
 }
