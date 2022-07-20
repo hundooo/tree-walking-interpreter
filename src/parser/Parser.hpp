@@ -1,6 +1,7 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+#include <vector>
 #include "../token/Token.hpp"
 #include "../lexer/Lexer.hpp"
 #include "../ast/AST.hpp"
@@ -12,7 +13,8 @@ class Parser {
         Token peek_token_;
         Parser(Lexer l);
         void next_token();
-        Node parse();
+        std::vector<Node *> parse();
+        Node *parseExpression();
 };
 
 #endif  // PARSER_H
