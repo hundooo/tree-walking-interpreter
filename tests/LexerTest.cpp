@@ -6,23 +6,14 @@
 #include "../src/lexer/Lexer.hpp"
 
 int main() { 
-    std::string input = "(define ten (+ 3 7)) (+ 1 137)";
+    std::string input = "(+ 3 5)";
     std::vector<Token> tests;
     Lexer l = Lexer(input);
 
     tests.push_back(Token(LPAREN, "("));
-    tests.push_back(Token(DEFINE, "define"));
-    tests.push_back(Token(IDENT, "ten"));
-    tests.push_back(Token(LPAREN, "("));
     tests.push_back(Token(PLUS, "+"));
     tests.push_back(Token(INT, "3"));
-    tests.push_back(Token(INT, "7"));
-    tests.push_back(Token(RPAREN, ")"));
-    tests.push_back(Token(RPAREN, ")"));
-    tests.push_back(Token(LPAREN, "("));
-    tests.push_back(Token(PLUS, "+"));
-    tests.push_back(Token(INT, "1"));
-    tests.push_back(Token(INT, "137"));
+    tests.push_back(Token(INT, "5"));
     tests.push_back(Token(RPAREN, ")"));
 
     bool flag = true;
