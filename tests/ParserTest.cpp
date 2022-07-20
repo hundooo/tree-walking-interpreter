@@ -9,9 +9,7 @@
 
 void printBT(const std::string& prefix, const Node* node, bool isLeft) {
     if(node != NULL) {
-        std::cout << prefix;
-
-        std::cout << (isLeft ? "├──" : "└──" );
+        std::cout << prefix << (isLeft ? "|--" : "\\--" );
 
         if (node->left_ == NULL && node->right_ == NULL) { 
             std::cout << node->val_ << std::endl;
@@ -19,8 +17,8 @@ void printBT(const std::string& prefix, const Node* node, bool isLeft) {
             std::cout << node->oper_ << std::endl;
         }
 
-        printBT(prefix + (isLeft ? "│   " : "    "), node->left_, true);
-        printBT(prefix + (isLeft ? "│   " : "    "), node->right_, false);
+        printBT(prefix + (isLeft ? "|   " : "    "), node->left_, true);
+        printBT(prefix + (isLeft ? "|   " : "    "), node->right_, false);
     }
 }
 
@@ -28,22 +26,12 @@ void printBT(const Node* node) {
     printBT("", node, false);    
 }
 
-
 int main() { 
-    std::string input = "(+ 5 7)";
-    std::vector<Token> tests;
+    std::string input = "(+ (+ 6 3) (+ 1 4))";
     Lexer l = Lexer(input);
     Parser p = Parser(l);
-    std::vector<Node *> root = p.parse();
 
-    bool flag = true;
-    if (root.size() != 1) {
-        printf("FAIL -> missing statements\n");
-    }
-
-    for (int i = 0; i < root.size(); ++i) { 
-
-    }
-
-    printf("%s", flag ? "ALL TESTS PASSED" : "FAIL");
+    Node *node = p.parseExpression();
+    printBT(node);
+    p.node_destroy(node);
 }
