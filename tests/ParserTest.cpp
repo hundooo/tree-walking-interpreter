@@ -13,6 +13,8 @@ void printBT(const std::string& prefix, const Node* node, bool isLeft) {
 
         if (node->left_ == NULL && node->right_ == NULL) { 
             std::cout << node->val_ << std::endl;
+        } else if (node->ident_.compare("")) { 
+            std::cout << node->ident_ << std::endl;
         } else {
             std::cout << node->oper_ << std::endl;
         }
@@ -27,13 +29,11 @@ void printBT(const Node* node) {
 }
 
 int main() { 
-    std::string input = "(+ (+ 6 3) (+ 1 4)) (+ 3 4)";
+    std::string input = "(define x 5) x";
     Lexer l = Lexer(input);
     Parser p = Parser(l);
     std::vector<Node *> root = p.parse();
-
-   
-
+    
     for (int i = 0; i < root.size(); ++i) { 
         printBT(root[i]);
         printf("\n");
