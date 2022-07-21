@@ -19,7 +19,7 @@ std::vector<Node *> Parser::parse() {
             next_token();
             root.push_back(parse_define());
         } else if (cur_token_.type_ == LPAREN) { 
-            root.push_back(parseExpression());
+            root.push_back(parse_expression());
         } else { 
             root.push_back(parse_single());
         }
@@ -28,7 +28,7 @@ std::vector<Node *> Parser::parse() {
     return root;
 }
 
-Node *Parser::parseExpression() {
+Node *Parser::parse_expression() {
     next_token();
     if (cur_token_.type_ == INT) {
         Node *leaf = new Node(std::stoi(cur_token_.literal_));
@@ -39,11 +39,11 @@ Node *Parser::parseExpression() {
         return tmp;
     } else if (cur_token_.type_ == PLUS) {
         Node *internal = new Node(cur_token_.literal_);
-        internal->left_= parseExpression();
-        internal->right_ = parseExpression();
+        internal->left_= parse_expression();
+        internal->right_ = parse_expression();
         return internal;
     } else {
-        return parseExpression();
+        return parse_expression();
     }
 }
 
@@ -61,7 +61,7 @@ Node *Parser::parse_define() {
     Node *node = new Node();
     node->ident_ = peek_token_.literal_;
     next_token();
-    node->left_ = parseExpression();
+    node->left_ = parse_expression();
     return node;
 }
 

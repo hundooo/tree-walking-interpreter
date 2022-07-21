@@ -14,7 +14,7 @@ class Parser {
         Parser(Lexer l);
         void next_token();
         std::vector<Node *> parse();
-        Node *parseExpression();
+        Node *parse_expression();
         Node *parse_single();
         Node *parse_define();
         void node_destroy(Node *n);
